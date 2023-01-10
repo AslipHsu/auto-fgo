@@ -592,7 +592,10 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui.textEdit.setText(msg)
 
     def setBrowser(self,txt):
-        self.ui.textBrowser.setText(self.ui.textBrowser.toPlainText()+txt)
+        if txt=="":
+            self.ui.textBrowser.setText("")
+        else:
+            self.ui.textBrowser.setText(self.ui.textBrowser.toPlainText()+txt)
     def runScript(self):
         self.ui.pushButton.setEnabled(False)
         msg = self.ui.textEdit.toPlainText() 
@@ -1013,14 +1016,16 @@ class DoSchedulel(QtCore.QObject):
             print("thread end")
         except FindTargetErr as e:
             self.finished.emit()
-            print(f"DoSchedulel thread end by FindTargetErr:\n{e}")
+            # print(f"DoSchedulel thread end by FindTargetErr:\n{e}")
+            self.textBrowser.emit(f"DoSchedulel thread end by FindTargetErr:\n{e}")
         except StopThread:
             self.finished.emit()
-            print(f"DoSchedulel thread end by stop")
+            # print(f"DoSchedulel thread end by stop")
+            self.textBrowser.emit("DoSchedulel thread end by stop")
         except Exception as e:
             self.finished.emit()
-            print(f"DoSchedulel thread end by Exception:\n{e}")
-####
+            # print(f"DoSchedulel thread end by Exception:\n{e}")
+            self.textBrowser.emit(f"DoSchedulel thread end by Exception:\n{e}")
 
     def globaltrace(self, frame, event, arg):         
         if event == 'call':             
