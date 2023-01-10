@@ -20,9 +20,9 @@ Yes_Url="./FGOPic/yes.png"
 GoldApple_Url="./FGOPic/gold_apple.png"
 SilverApple_Url="./FGOPic/silver_apple.png"
 CopperApple_Url="./FGOPic/copper_apple.png"
-EnterLevel_Url="./FGOPic/enter_level.png"#載入腳本時改路徑?
-Support_Url="./FGOPic/support.png"#載入腳本時改路徑?
-Support_CraftEssence_Url="./FGOPic/support_CraftEssence.png"#載入腳本時改路徑?
+EnterLevel_Url="./FGOPic/enter_level.png"
+Support_Url="./FGOPic/support.png"
+Support_CraftEssence_Url="./FGOPic/support_CraftEssence.png"
 SupportScene_Url="./FGOPic/support_scene.png"
 EnterBattleScen_Url="./FGOPic/enter_battle_scene.png"
 AttackScene_url="./FGOPic/attack_scene.png"
@@ -45,9 +45,6 @@ RandomSupport_click=(300, 165)
 EnterBattleScene_box=(624, 363, 93, 43)
 EnterBattle_click=(670, 384)
 
-# Battle_Box=(506,7,9,15)
-# Turn_Box=(499, 47, 17, 15)
-
 AttackScene_box=(610, 300, 80, 32)
 Attack_click=(652, 318)
 
@@ -60,27 +57,24 @@ CraftSkill={"c1":(517,180),"c2":(571,180),"c3":(620,180)}
 EnemySite={"e1":(26,25),"e2":(169,25),"e3":(313,25)}
 ServerSite={"s1":(172,240),"s2":(359,240),"s3":(546,240)}
 
-#Box(left=9, top=193, width=718, height=167)
 Card_click=[(68,315),(216,315),(364,315),(512,315),(660,315)]#5張卡的位置
 Crad_boxs=[(20, 231,107,128),(174, 233, 98, 128),(319, 228, 102,131),(466,229, 99,130),(614,223,103,133)]
 
 Server_area=[(18,214,160,93),(207,207,155,101),(385,209,156,97)]
 Server_click=[(89,275),(273,268),(464,264)]
 Server_img={}
-SetCrad_roll=(363,213)#不知為啥會偏移(+278,+74)@@
-SetCrad_img={}#"s1Q":[(pic)]
+SetCrad_roll=(363,213)
+SetCrad_img={}
 SetCardDetect_url="./FGOPic/set_card_detect.png"
 SetCardQ_url="./FGOPic/set_card_Q.png"
 SetCardA_url="./FGOPic/set_card_A.png"
 SetCardB_url="./FGOPic/set_card_B.png" 
 SetCardClose=(624,36)
 
-#CheckBattle_box=(531,31,10,10)
-#CheckBattle_url="./FGOPic/check_battle.png" 
 DetectBattle1_url="./FGOPic/battle_1.png" 
 DetectBattle2_url="./FGOPic/battle_2.png" 
 DetectBattle3_url="./FGOPic/battle_3.png" 
-DetectBattle_box=(507, 9, 8, 11)#計算battle數
+DetectBattle_box=(507, 9, 8, 11)
 
 NobleCrad={"s1":( 238,120),"s2":( 368,120),"s3":( 498,120)} 
 ChangeStasr={"s1":(78,200),"s2":( 192 ,200),"s3":(307,200)}
@@ -117,15 +111,8 @@ End_pic_2=cv2.imread(EndPic2_url)
 End_pic_3=cv2.imread(EndPic3_url)
 End_pic_4=cv2.imread(EndPic4_url)
 
-#settings
-# Support_class=None
-
-# Support_setting=[]#[從者(1無 2自訂),從者職階(None,0~8),禮裝(1無 2自訂),優先度(1從者 2禮裝)]
-# UseSkill_setting=[]#[發動者,發動對象,第幾TURN發動,第幾BATTLE發動]
-
 def matToQpix(img):
     img2=cv2.resize(src=img,dsize=None,fx=1,fy=1)
-    # img2=cvtColor(img,COLOR_BGR2RGB)
     img3=QtGui.QImage(img2[:],img2.shape[1], img2.shape[0],img2.shape[1] * 3, QtGui.QImage.Format_RGB888)
     return QtGui.QPixmap.fromImage(img3)
 
@@ -178,9 +165,7 @@ class SubWindow_1(QWidget):
     def setup_control(self):
         self.ui.pushButton.clicked.connect(self.ok)
         self.ui.pushButton_2.clicked.connect(self.cancel)
-        # back_gd=QtGui.QPixmap("./FGOPic/back_gd.png")
-        # self.ui.label_2.setPixmap(back_gd)
-        # self.ui.label_2.setScaledContents(True)
+
     #subwindow (set_support_class)
     def ok(self):
         if self.picurl!=None:
@@ -243,16 +228,13 @@ class SubWindow_2(QWidget):
 
         key=""
         if self.ui.checkBox.isChecked():
-            key=key+"B"+str(self.ui.lineEdit.text())
-        
+            key=key+"B"+str(self.ui.lineEdit.text())  
         if self.ui.checkBox_2.isChecked():
             key=key+"T"+str(self.ui.lineEdit_2.text())
         msg_map=dict()
         if msg!="":
             msg_map=eval(msg)
         print("k ",key)
-        
-        #錯誤處裡?
         if key in msg_map:
             msg_map[key].append(value)
         else:
@@ -309,7 +291,6 @@ class SubWindow_3(QWidget):
             msg_map=eval(msg)
 
         key="Noble"
-        #錯誤處裡?
         if key in msg_map:
             msg_map[key].append(value)
         else:
@@ -337,9 +318,6 @@ class SubWindow_3(QWidget):
         msg_map=dict()
         if msg!="":
             msg_map=eval(msg)
-        
-        #錯誤處裡?
-
         msg_map[key]=value
 
         m=str(msg_map).replace("],","],\n",-1).replace(": ",":",-1)
@@ -348,7 +326,6 @@ class SubWindow_3(QWidget):
     
     def ok(self):
         self.main_textEdit.setText(self.ui.textEdit.toPlainText())
-        #msg設置全域變數?
         self.close()
 
     def cancel(self):
@@ -438,7 +415,6 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui.pushButton_17.clicked.connect(self.checkCard)
 
         self.ui.pushButton_9.clicked.connect(lambda: self.detectFGO())
-        # self.ui.label.setText("QAQ")
 
     # 停止thread
     def stop(self):
@@ -600,11 +576,10 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.ui.pushButton.setEnabled(False)
         msg = self.ui.textEdit.toPlainText() 
         schedulelist=msg.split("\n")[:-1]# 去掉最後一格為空['1. enter_level', '']
-        print("sc list:",schedulelist)#為啥要用self.schedulelist??
+        print("sc list:",schedulelist)
 
-        # Step 2: Create a QThread object
         self.thread = QtCore.QThread()
-        # Step 3: Create a worker object and setup param
+
         self.worker = DoSchedulel()
 
         self.worker.schedulelist=schedulelist
@@ -613,9 +588,7 @@ class MainWindow_controller(QtWidgets.QMainWindow):
         self.worker.enterLevel_pic=cv2.imread(EnterLevel_Url)
         self.worker.support_pic=cv2.imread(Support_Url)
         self.worker.support_CraftEssence_pic=cv2.imread(Support_CraftEssence_Url)
-        # Step 4: Move worker to the thread
         self.worker.moveToThread(self.thread)
-        # Step 5: Connect signals and slots
         self.thread.started.connect(self.worker.run)
         self.worker.textBrowser.connect(self.setBrowser)
         self.worker.finished.connect(lambda: self.ui.pushButton.setEnabled(True))
@@ -796,10 +769,6 @@ class DoSchedulel(QtCore.QObject):
             self.battle_img=img_bin
         else:
             img_xor=cv2.bitwise_xor(img_bin,self.battle_img)
-            # print(img_bin)
-            # print(self.battle_img)
-            # print("-------------")
-            # print(img_xor)
             print("bsum 1: ",np.sum(img_xor))
             bsum=np.sum(img_xor)
             print("bsum 2: ",bsum)
@@ -859,9 +828,6 @@ class DoSchedulel(QtCore.QObject):
 
             self.battle_flag[b]=True#標記 之後同樣回合都不再執行
             turn+=1
-            # if not self.detectScene(self.attack_pic,15,AttackScene_box) :
-            #     #raise FindTargetErr("attack_pic detectScene err")
-            #     break
 
     #battleEnd
     def battleEnd(self):

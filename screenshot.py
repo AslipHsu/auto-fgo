@@ -61,12 +61,6 @@ class CaptureScreen(QWidget):
                 self.qlabel_2.setText(self.text)
             self.close()
             
-
-    # def mouseDoubleClickEvent(self,event):
-    #     if self.captureImage is not None:
-    #         self.saveImage()
-    #         self.close()
-
     def keyPressEvent(self,event):
         if event.key()==Qt.key_Escape:
             self.close()
@@ -110,13 +104,6 @@ class CaptureScreen(QWidget):
 
     def saveImage(self):
         self.captureImage.save(self.pic_url,quality=95)
-
-# if __name__=="__main__":
-#     keyboard.wait(hotkey="f4")#案f4截圖
-#     app = QApplication(sys.argv)
-#     windows = CaptureScreen()
-#     windows.show()
-#     sys.exit(app.exec_())
 
 
 
