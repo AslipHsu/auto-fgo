@@ -13,7 +13,7 @@ or just open fgo_start.exe by .exe version
 保持右邊列表為展開狀態
 <img src="https://github.com/AslipHsu/picture/blob/main/2.1.png" width="400">
 
-3.參考設定
+3.參考設定\n
 <img src="https://github.com/AslipHsu/picture/blob/main/2.2.png" width="400">
 <img src="https://github.com/AslipHsu/picture/blob/main/2.3.png" width="400">
 ps. 新版本bluestack5 好像有內建廣告 需要自己在設定關掉
