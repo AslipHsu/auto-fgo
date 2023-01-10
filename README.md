@@ -1,9 +1,9 @@
 to start: 
-python fgo_start.py
+python fgo_start.py  
 or just open fgo_start.exe by .exe version
 
-
-
+  
+####################################################################  
 模擬器BlueStack5 :  
 1.官網載點: https://www.bluestacks.com/download.html  
 版本:Nougot 64 位元(支援hyper-v)  
