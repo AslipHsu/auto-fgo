@@ -1,7 +1,7 @@
 
 auto-fgo  
 =========
-This is a FGO auto battle project based on win32gui and image recognition.  
+This is a FGO script editer based on win32gui and image recognition.  
 to start: 
 python fgo_start.py  
 or just open fgo_start.exe  
