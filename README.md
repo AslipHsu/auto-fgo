@@ -58,7 +58,7 @@ undo返回腳本編輯的上一步
 clear完全清除  
 save可儲存當下腳本內容  
 load可讀取腳本  
-ps.讀取腳本僅讀取text, 關卡和支援須重新重新截圖  
+ps.讀取腳本僅讀取text, 關卡和支援須重新截圖  
 <img src="https://github.com/AslipHsu/picture/blob/main/9.png" width="400">  
 
 
