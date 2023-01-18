@@ -46,7 +46,7 @@ ps: 截圖關卡可保持在模擬器畫面最上方 防止誤判按到其他關
 
 腳本說明: skill-s12-s1  表示 使用server1的2技能, 並且這是指定技能 對象為從者1  
 	    'B1':['skill-s12-s1','skill-s22'] 表示 在battle1時使用 s12,s22 技能  
-<img src="https://github.com/AslipHsu/picture/blob/main/6.png" width="400">  
+<img src="https://github.com/AslipHsu/picture/blob/main/8.png" width="400">  
 
 攻擊設定  
 卡片可設定從者卡片優先度 發動寶具設定battle 或是哪個turn發動  
@@ -59,7 +59,7 @@ clear完全清除
 save可儲存當下腳本內容  
 load可讀取腳本  
 ps.讀取腳本僅讀取text, 關卡和支援須重新重新截圖  
-<img src="https://github.com/AslipHsu/picture/blob/main/8.png" width="400">  
+<img src="https://github.com/AslipHsu/picture/blob/main/9.png" width="400">  
 
 
 
