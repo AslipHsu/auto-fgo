@@ -28,9 +28,11 @@ EnterBattleScen_Url="./FGOPic/enter_battle_scene.png"
 AttackScene_url="./FGOPic/attack_scene.png"
 CardPosition_url="./FGOPic/card_position.png"
 EndPic1_url="./FGOPic/end_pic_1.png"
+EndPic1_1_url="./FGOPic/end_pic_1_1.png"
 EndPic2_url="./FGOPic/end_pic_2.png"
 EndPic3_url="./FGOPic/end_pic_3.png"
 EndPic4_url="./FGOPic/end_pic_4.png"
+EndPic4_1_url="./FGOPic/end_pic_4_1.png"
 #detec
 Init_box=(642,365, 71,20)
 NoAp_box=(314,21, 105, 34)
@@ -42,7 +44,7 @@ SupportScene_box=(597, 2, 132, 46)
 Class_click=[(56,75),(94,75),(132,75),(170,75),(208, 75),(246,75),(284,75),(322,75),(360,75)]
 RandomSupport_click=(300, 165)
 
-EnterBattleScene_box=(624, 363, 93, 43)
+EnterBattleScene_box=(598, 4, 132, 32)
 EnterBattle_click=(670, 384)
 
 AttackScene_box=(610, 300, 80, 32)
@@ -83,12 +85,16 @@ ChangeOK_click=(367,357)
 
 End_1_box=(35,90,141,32)
 End_1_click=(104,108)
+End_1_1_box=(376,258,131,20)
+End_1_1_click=(104,108)
 End_2_box=(365, 100, 97, 31)
 End_2_click=(414, 116)
 End_3_box=(570, 345,112,39)
 End_3_click=( 628 ,367)
 End_4_box=(205, 305,91, 37)
 End_4_click=( 249 ,324)
+End_4_1_box=(154,338,69, 27)
+End_4_1_click=( 188 ,351)
 #
 CardSet_box=(302,172,62,20)
 
@@ -107,9 +113,11 @@ SetCardQ_pic=cv2.imread(SetCardQ_url)
 SetCardA_pic=cv2.imread(SetCardA_url)
 SetCardB_pic=cv2.imread(SetCardB_url)
 End_pic_1=cv2.imread(EndPic1_url)
+End_pic_1_1=cv2.imread(EndPic1_1_url)
 End_pic_2=cv2.imread(EndPic2_url)
 End_pic_3=cv2.imread(EndPic3_url)
 End_pic_4=cv2.imread(EndPic4_url)
+End_pic_4_1=cv2.imread(EndPic4_1_url)
 
 def matToQpix(img):
     img2=cv2.resize(src=img,dsize=None,fx=1,fy=1)
@@ -689,12 +697,14 @@ class DoSchedulel(QtCore.QObject):
         location=None
         #[從者] 
         if set[0]==2:
-            for i in range(15):
+            for i in range(10):
                 location=self.do.find_target_MT(self.support_pic)
                 if location!=None:
                     break
                 self.do.to_roll(363 ,287)
                 self.time_wait(0.5)
+            if location==None:
+                location=(159,124)
         #[隨便選一個支援]
         else:
                 #隨便選
@@ -705,7 +715,7 @@ class DoSchedulel(QtCore.QObject):
             raise FindTargetErr("enterBattle_pic detectScene err")
         #進入戰鬥
         self.do.to_click(EnterBattle_click[0],EnterBattle_click[1])
-        while self.detectScene(Attack_pic,20,AttackScene_box):
+        while self.detectScene(Attack_pic,40,AttackScene_box):
                 #轉場
                 break
 
@@ -836,14 +846,24 @@ class DoSchedulel(QtCore.QObject):
             print("battle end 1")
             self.time_wait(0.5)
             self.do.to_click(End_1_click[0],End_1_click[1])
+        while self.detectScene(End_pic_1_1,2,End_1_1_box):#羈絆升級
+            print("battle end 1_1")
+            self.time_wait(0.5)
+            self.do.to_click(End_1_1_click[0],End_1_1_click[1])
+            self.time_wait(0.5)
         if self.detectScene(End_pic_2,3,End_2_box):
             print("battle end 2")
             self.time_wait(0.5)
             self.do.to_click(End_2_click[0],End_2_click[1])
-        if self.detectScene(End_pic_3,3,End_3_box):
+        while self.detectScene(End_pic_3,3,End_3_box):
             print("battle end 3")
             self.time_wait(0.5)
             self.do.to_click(End_3_click[0],End_3_click[1])
+            self.time_wait(0.5)
+        if self.detectScene(End_pic_4_1,2,End_4_1_box):
+            print("battle end 4_1")
+            self.time_wait(0.5)
+            self.do.to_click(End_4_1_click[0],End_4_1_click[1])         
         if self.detectScene(End_pic_4,3,End_4_box):
             print("battle end 4")
             self.time_wait(0.5)
