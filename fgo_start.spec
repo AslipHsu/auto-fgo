@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['fgo_start.py','check_card.py','fgo_click.py','fgo_controller.py','fgo_ui.py','screenshot.py','set_attack.py','set_skill.py','set_support_class.py'],
+    ['fgo_start.py', 'check_card.py', 'fgo_click.py', 'fgo_controller.py', 'fgo_ui.py', 'screenshot.py', 'set_attack.py', 'set_skill.py', 'set_support_class.py'],
     pathex=[],
     binaries=[],
     datas=[],

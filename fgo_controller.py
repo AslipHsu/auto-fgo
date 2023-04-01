@@ -11,6 +11,7 @@ import time
 from sys import settrace
 import cv2
 import numpy as np
+# np.set_printoptions(threshold=np.inf)
 #v1.25
 
 ClassList=[]
@@ -38,7 +39,7 @@ Init_box=(642,365, 71,20)
 NoAp_box=(314,21, 105, 34)
 
 Support_class=None
-SupportScene_box=(597, 2, 132, 46)
+SupportScene_box=(36, 10, 50, 28)
 
 #好友支援職階 9種: 全 劍 弓 槍 騎 術 殺 狂 特
 Class_click=[(56,75),(94,75),(132,75),(170,75),(208, 75),(246,75),(284,75),(322,75),(360,75)]
@@ -47,7 +48,7 @@ RandomSupport_click=(300, 165)
 EnterBattleScene_box=(598, 4, 132, 32)
 EnterBattle_click=(670, 384)
 
-AttackScene_box=(610, 300, 80, 32)
+AttackScene_box=(652, 366, 37, 28)
 Attack_click=(652, 318)
 
 ServerSkill={"s11":(45,333),"s12":(95,333),"s13":(145,333),\
@@ -695,6 +696,7 @@ class DoSchedulel(QtCore.QObject):
         if not self.detectScene(SupportScene_pic,3,SupportScene_box):
             raise FindTargetErr("choose_support detectScene err")
         location=None
+        self.time_wait(0.5)
         #[從者] 
         if set[0]==2:
             for i in range(10):
@@ -896,11 +898,16 @@ class DoSchedulel(QtCore.QObject):
                     ss_xy2=ServerSite[ss[2]]
                     self.do.to_click(ss_xy2[0],ss_xy2[1]) 
             elif ss[0]=="change":
-                ss_xy1=CraftSkill[ss[1]]
+                self.do.to_click(CraftSkill_click[0],CraftSkill_click[1])
+                self.time_wait(1)
+                ss_xy1=CraftSkill["c3"]
                 self.do.to_click(ss_xy1[0],ss_xy1[1])
-                if len(ss)==3:
-                    ss_xy2=CraftSkill[ss[2]]
-                    self.do.to_click(ss_xy2[0],ss_xy2[1])
+                self.time_wait(1)
+                stasr_xy=ChangeStasr[ss[1]]
+                sub_xy=ChangeSub[ss[2]]
+                self.do.to_click(stasr_xy[0],stasr_xy[1])
+                self.do.to_click(sub_xy[0],sub_xy[1])
+                self.do.to_click(ChangeOK_click[0],ChangeOK_click[1])
             while self.detectScene(Attack_pic,5,AttackScene_box):
                 #發動技能動畫延遲?秒 
                 break
