@@ -1,3 +1,0 @@
-1. enter_level 2
-2. choose_support [2]
-3. battle {'B3':['skill-s11','skill-s13','skill-s31','skill-s33','skill-c2-s3']} {'Attack':['s2B','s1B','s3B','s2Q','s1Q','s3Q','s2A','s1A','s3A'],'Noble':['B3-s3']}
