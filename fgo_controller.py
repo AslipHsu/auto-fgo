@@ -949,6 +949,10 @@ class DoSchedulel(QtCore.QObject):
                 self.do.to_click(c[0],c[1])
                 choose=choose+1
                 delay+=4#發動寶具多等幾秒
+            if  "Attack" not in attack_map:
+                self.do.to_click(Card_click[0][0],Card_click[0][1])
+                self.do.to_click(Card_click[1][0],Card_click[1][1])
+                self.do.to_click(Card_click[2][0],Card_click[2][1])
                     
         if "Attack" in attack_map:
             print(attack_map["Attack"])
